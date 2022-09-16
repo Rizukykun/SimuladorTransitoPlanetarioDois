@@ -164,6 +164,7 @@
 
     function wait() {
         document.getElementById("form").style.display = "none";
+        document.getElementById("simulations").style.display = "none";
         document.getElementById("wait").style.display = "block";
     }
 
@@ -176,7 +177,7 @@
         divtest.innerHTML = '<input type="hidden" value="' + room + '" id="room" name="room">';
         divtest.innerHTML += '<input type="hidden" value="' + room2 + '" id="room2" name="room2">';
         objTo.appendChild(divtest)
-        wait();
+        wait()
     }
 
     function create_moons() {
@@ -185,7 +186,7 @@
         var divtest = document.createElement("div");
         divtest.setAttribute("class", "form-group removeclassMoon" + room);
         var rdiv = 'removeclassMoon' + room;
-        divtest.innerHTML = '<div class="panel panel-default"> <div class="panel panel-heading"> <div class="text-right"><button type="button" onclick="remove_moons_fields(' + room + ')" class="btn btn-danger"> <span class="glyphicon glyphicon-minus"></span> </button></div> Moon ' + room + ' </div> <div class="panel-body"> <div class="row"> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonName_' + room + '" class="form-label">Name:</label> <input id="moonName_' + room + '" type="text" name="moonName_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonRadius_' + room + '" class="form-label">Radius:</label> <input id="moonRadius_' + room + '" type="text" name="moonRadius_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonMass_' + room + '" class="form-label">Mass:</label> <input id="moonMass_' + room + '" type="text" name="moonMass_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonAlbedo_' + room + '" class="form-label">Albedo:</label> <input id="moonAlbedo_' + room + '" type="text" name="moonAlbedo_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonDistance_' + room + '" class="form-label">Distance:</label> <input id="moonDistance_' + room + '" type="text" name="moonDistance_' + room + '" class="form-control"> </div> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <hr> <h3>Orbit</h3> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonSemiaxis_' + room + '" class="form-label">Semiaxis:</label> <input id="moonSemiaxis_' + room + '" type="text" name="moonSemiaxis_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonPeriod_' + room + '" class="form-label">Period:</label> <input id="moonPeriod_' + room + '" type="text" name="moonPeriod_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonInclinationAngle_' + room + '" class="form-label">Inclination Angle:</label> <input id="moonInclinationAngle_' + room + '" type="text" name="moonInclinationAngle_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonObliquityAngle_' + room + '" class="form-label">Obliquity Angle:</label> <input id="moonObliquityAngle_' + room + '" type="text" name="moonObliquityAngle_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonEccentricity_' + room + '" class="form-label">Eccentricity:</label> <input id="moonEccentricity_' + room + '" type="text" name="moonEccentricity_' + room + '" class="form-control"> </div> </div> </div> </div>';
+        divtest.innerHTML = '<div class="panel panel-default"> <div class="panel panel-heading"> <div class="text-right"><button type="button" onclick="remove_moons_fields(' + room + ')" class="btn btn-danger"> <span class="glyphicon glyphicon-minus"></span> </button></div> Moon ' + room + ' </div> <div class="panel-body"> <div class="row"> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonName_' + room + '" class="form-label">Name:</label> <input id="moonName_' + room + '" type="text" name="moonName_' + room + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonRadius_' + room + '" class="form-label">Radius:</label> <input id="moonRadius_' + room + '" type="text" name="moonRadius_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonMass_' + room + '" class="form-label">Mass:</label> <input id="moonMass_' + room + '" type="text" name="moonMass_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonAlbedo_' + room + '" class="form-label">Albedo:</label> <input id="moonAlbedo_' + room + '" type="text" name="moonAlbedo_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonDistance_' + room + '" class="form-label">Distance:</label> <input id="moonDistance_' + room + '" type="text" name="moonDistance_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <hr> <h3>Orbit</h3> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonSemiaxis_' + room + '" class="form-label">Semiaxis:</label> <input id="moonSemiaxis_' + room + '" type="text" name="moonSemiaxis_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonPeriod_' + room + '" class="form-label">Period:</label> <input id="moonPeriod_' + room + '" type="text" name="moonPeriod_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonInclinationAngle_' + room + '" class="form-label">Inclination Angle:</label> <input id="moonInclinationAngle_' + room + '" type="text" name="moonInclinationAngle_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonObliquityAngle_' + room + '" class="form-label">Obliquity Angle:</label> <input id="moonObliquityAngle_' + room + '" type="text" name="moonObliquityAngle_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="moonEccentricity_' + room + '" class="form-label">Eccentricity:</label> <input id="moonEccentricity_' + room + '" type="text" name="moonEccentricity_' + room + '" class="form-control" placeholder="Unidade de Medida"> </div> </div> </div> </div>';
 
         objTo.appendChild(divtest)
     }
@@ -206,7 +207,7 @@
         var divtest = document.createElement("div");
         divtest.setAttribute("class", "form-group removeclassSpot" + room2);
         var rdiv = 'removeclassSpot' + room2;
-        divtest.innerHTML = '<div class="panel panel-default"> <div class="panel panel-heading"> <div class="text-right"><button type="button" onclick="remove_spots_fields(' + room2 + ')" class="btn btn-danger"> <span class="glyphicon glyphicon-minus"></span> </button></div> Spot ' + room2 + ' </div> <div class="panel-body"> <div class="row"> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotRadius_' + room2 + '" class="form-label">Radius:</label> <input id="spotRadius_' + room2 + '" type="text" name="spotRadius_' + room2 + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotIntensity_' + room2 + '" class="form-label">Intensity:</label> <input id="spotIntensity_' + room2 + '" type="text" name="spotIntensity_' + room2 + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotLatitude_' + room2 + '" class="form-label">Latitude:</label> <input id="spotLatitude_' + room2 + '" type="text" name="spotLatitude_' + room2 + '" class="form-control"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotLongitude_' + room2 + '" class="form-label">Longitude:</label> <input id="spotLongitude_' + room2 + '" type="text" name="spotLongitude_' + room2 + '" class="form-control"> </div>';
+        divtest.innerHTML = '<div class="panel panel-default"> <div class="panel panel-heading"> <div class="text-right"><button type="button" onclick="remove_spots_fields(' + room2 + ')" class="btn btn-danger"> <span class="glyphicon glyphicon-minus"></span> </button></div> Spot ' + room2 + ' </div> <div class="panel-body"> <div class="row"> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotRadius_' + room2 + '" class="form-label">Radius:</label> <input id="spotRadius_' + room2 + '" type="text" name="spotRadius_' + room2 + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotIntensity_' + room2 + '" class="form-label">Intensity:</label> <input id="spotIntensity_' + room2 + '" type="text" name="spotIntensity_' + room2 + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotLatitude_' + room2 + '" class="form-label">Latitude:</label> <input id="spotLatitude_' + room2 + '" type="text" name="spotLatitude_' + room2 + '" class="form-control" placeholder="Unidade de Medida"> </div> <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"> <label for="spotLongitude_' + room2 + '" class="form-label">Longitude:</label> <input id="spotLongitude_' + room2 + '" type="text" name="spotLongitude_' + room2 + '" class="form-control" placeholder="Unidade de Medida"> </div>';
 
         objTo.appendChild(divtest)
     }
@@ -218,9 +219,9 @@
         <h1>Simulation Tool</h1>
     </div>
 
-    <div class="content" id="form">
+    <div class="content" id="front">
 
-        <div class="text-center" style="margin-bottom: 3%">
+        <div class="text-center" style="margin-bottom: 3%" id="simulations">
 
             <button type="button" onclick="test1()" class="btn btn-primary">Simulation 1</button>
             <button type="button" onclick="test2()" class="btn btn-primary">Simulation 2</button>
@@ -228,7 +229,7 @@
 
         </div>
 
-        <section>
+        <section id="form">
 
 
             <form method="GET" action="simulator/" onsubmit="addRoom()">
@@ -248,15 +249,15 @@
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="starRadius" class="form-label">Radius:</label>
-                                <input id="starRadius" type="text" name="starRadius" class="form-control">
+                                <input id="starRadius" type="text" name="starRadius" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="starMass" class="form-label">Mass:</label>
-                                <input id="starMass" type="text" name="starMass" class="form-control">
+                                <input id="starMass" type="text" name="starMass" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="effectiveTemperature" class="form-label">Effective Temperature:</label>
-                                <input id="effectiveTemperature" type="text" name="effectiveTemperature" class="form-control">
+                                <input id="effectiveTemperature" type="text" name="effectiveTemperature" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="starColor" class="form-label">Color: </label>
@@ -304,19 +305,19 @@
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetRadius" class="form-label">Radius:</label>
-                                <input id="planetRadius" type="text" name="planetRadius" class="form-control">
+                                <input id="planetRadius" type="text" name="planetRadius" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetMass" class="form-label">Mass:</label>
-                                <input id="planetMass" type="text" name="planetMass" class="form-control">
+                                <input id="planetMass" type="text" name="planetMass" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="atmosphere" class="form-label">Atmosphere:</label>
-                                <input id="atmosphere" type="text" name="atmosphere" class="form-control">
+                                <input id="atmosphere" type="text" name="atmosphere" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetAlbedo" class="form-label">Albedo:</label>
-                                <input id="planetAlbedo" type="text" name="planetAlbedo" class="form-control">
+                                <input id="planetAlbedo" type="text" name="planetAlbedo" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <hr>
@@ -325,23 +326,23 @@
 
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetSemiaxis" class="form-label">Semiaxis:</label>
-                                <input id="planetSemiaxis" type="text" name="planetSemiaxis" class="form-control">
+                                <input id="planetSemiaxis" type="text" name="planetSemiaxis" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetPeriod" class="form-label">Period:</label>
-                                <input id="planetPeriod" type="text" name="planetPeriod" class="form-control">
+                                <input id="planetPeriod" type="text" name="planetPeriod" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetInclinationAngle" class="form-label">Inclination Angle:</label>
-                                <input id="planetInclinationAngle" type="text" name="planetInclinationAngle" class="form-control">
+                                <input id="planetInclinationAngle" type="text" name="planetInclinationAngle" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetObliquityAngle" class="form-label">Obliquity Angle:</label>
-                                <input id="planetObliquityAngle" type="text" name="planetObliquityAngle" class="form-control">
+                                <input id="planetObliquityAngle" type="text" name="planetObliquityAngle" class="form-control" placeholder="Unidade de Medida">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetEccentricity" class="form-label">Eccentricity:</label>
-                                <input id="planetEccentricity" type="text" name="planetEccentricity" class="form-control">
+                                <input id="planetEccentricity" type="text" name="planetEccentricity" class="form-control" placeholder="Unidade de Medida">
                             </div>
 
                         </div>
@@ -370,8 +371,48 @@
 
                     </div>
                 </div>
+                <div class="text-center panel panel-default">
+                    <div class="panel panel-heading text-left">
+                        Noise
+                    </div>
+                    <h3>Noise</h3>
+                    <div class="panel panel-body" style="text-align: left;">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="gaussian" type="radio" name="noise" value="gaussian">
+                            <label for="gaussian">Gaussian</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="impulse" type="radio" name="noise" value="impulse">
+                            <label for="impulse">Impulse</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="laplacian" type="radio" name="noise" value="laplacian">
+                            <label for="laplacian">Laplacian</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="multiplicative_gaussian" type="radio" name="noise" value="multiplicative_gaussian">
+                            <label for="multiplicative_gaussian">Multiplicative_Gaussian</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="poisson" type="radio" name="noise" value="poisson">
+                            <label for="poisson">Poisson</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="random" type="radio" name="noise" value="random">
+                            <label for="random">Random</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="uniform" type="radio" name="noise" value="uniform">
+                            <label for="uniform">Uniform</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <input id="blur" type="radio" name="noise" value="blur">
+                            <label for="blur">Blur</label>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="text-center">
+                <div class="text-center row">
                     <input class="btn btn-primary" type="submit" name="Submit">
                 </div>
 
@@ -381,14 +422,20 @@
 
         </section>
 
-        <section style="display: none;" id="wait">
+        <section style="display: none; text-align: center;" id="wait">
 
             <h1>Wait ... We are generating your simulation</h1>
             <img src="{% static 'img/wait.gif' %}">
-            <!-- Aqui tem de vir uma loading bar pelo amor de cristo jesus -->
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" area-valuemin="0" area-valuemax="157">
+
+                </div>
+            </div>
 
         </section>
     </div>
+
 
 </body>
 

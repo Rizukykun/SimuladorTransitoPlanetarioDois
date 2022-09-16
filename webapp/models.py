@@ -5,9 +5,12 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+from wand.image import Image
 import math
 import numpy as np
 import os
+import glob
+from webapp.automold import add_fog
 
 
 class Star (object):
@@ -100,7 +103,6 @@ class Star (object):
 			spot = spot.reshape([Ny, Nx])
 
 			imgStar = estrela * spot
-
 
 class Planet (object):
 	
@@ -225,9 +227,8 @@ class Main (object):
 		except OSError:
 			pass
 		os.system("ffmpeg -r 10 -start_number 40 -i ./webapp/output/frames/img_%d.png -b:v 1000k ./webapp/static/video/test.webm")
-
 		
-	def plotImgs(self, planet, star, moons, maps):
+	def plotImgs(self, planet, star, moons, maps, noise):
 	
 		plt.rcParams['xtick.minor.visible'] = True
 		plt.rcParams['ytick.minor.visible'] = True
@@ -281,6 +282,14 @@ class Main (object):
 		color = '.9'
 		g = 1
 
+		## @@@ Guilherme Barros - Primeiro incremento de teste - Deleção de imagens da pasta
+		files = glob.glob('webapp/output/frames/*')
+		for f in files:
+			os.remove(f)
+		files = glob.glob('webapp/static/video/*')
+		for f in files:
+			os.remove(f)
+
 		#print 'Loop start. '
 		for i in q:
 			planet = np.zeros(Ny * Nx) + 1
@@ -298,6 +307,9 @@ class Main (object):
 					ll, = np.where((kk/Nx-(y0-moons[x].moonOrbit(Rs_pix, Rpl_pix, tstep)[1][i]))**2+(kk-Nx*np.int64(kk/Nx)-(x0-moons[x].moonOrbit(Rs_pix, Rpl_pix, tstep)[0][i]))**2 < moons[x].rMoon(Rs_pix)**2)
 					planet[ll]=0.
 			planet = planet.reshape([Ny, Nx])
+
+			# try 2
+			#img = add_fog(ImgStar*planet, fog_coeff= 1)
 
 			# Smooth image
 			img = blur_image(ImgStar*planet, 5)
@@ -328,12 +340,10 @@ class Main (object):
 			ax.xaxis.label.set_color(color)
 			ax.yaxis.label.set_color(color)
 			ax.tick_params(axis='both', which='both', colors=color)
-			fig.tight_layout()
+			fig.tight_layout()			
 			fig.savefig('webapp/output/frames/img_' + str(i) + '.png', dpi=128, facecolor='k')
 			plt.close('all')
 			g += 1
 			# =====================================================================
 		print ('Process Done!')
 		return "Ok!"
-
-
