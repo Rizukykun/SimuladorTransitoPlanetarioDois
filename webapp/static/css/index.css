@@ -1,0 +1,32 @@
+.content {
+    padding: 20px;
+}
+
+.text-right {
+    margin-right: 1%;
+}
+
+.marginL20 {
+    margin-left: 20%;
+}
+
+.textL {
+    text-align: left;
+}
+
+.progress-bar {
+    width: 0%;
+}
+
+#simulations {
+    margin-bottom: 3%;
+}
+
+#iconImg {
+    width: 150px;
+}
+
+#wait {
+    display: none;
+    text-align: center;
+}

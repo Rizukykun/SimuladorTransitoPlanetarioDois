@@ -3,7 +3,12 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-from webapp.models import Main, Planet, Star, Orbit, Moon, Spot
+from webapp.Models.Main import Main
+from webapp.Models.Moon import Moon
+from webapp.Models.Orbit import Orbit
+from webapp.Models.Planet import Planet
+from webapp.Models.Spot import Spot
+from webapp.Models.Star import Star
 
 # Create your views here.
 

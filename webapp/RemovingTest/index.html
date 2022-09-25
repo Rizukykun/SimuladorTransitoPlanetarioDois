@@ -13,6 +13,11 @@
     <script src="{% static 'js/index.js' %}"></script>
     <link rel="shortcut icon" type="image/png" href="{% static 'img/rocket.png' %}" />
     <title>Home</title>
+    <style type="text/css">
+        .content {
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,7 +28,7 @@
 
     <div class="content" id="front">
 
-        <div class="text-center" id="simulations">
+        <div class="text-center" style="margin-bottom: 3%" id="simulations">
 
             <button type="button" onclick="test1()" class="btn btn-primary">Simulation 1</button>
             <button type="button" onclick="test2()" class="btn btn-primary">Simulation 2</button>
@@ -44,7 +49,7 @@
                     <div class="panel panel-body">
                         <div class="row">
 
-                            <img class="img-rounded col-lg-3 col-md-3 col-sm-3 col-xs-3" src="{% static 'img/star.png' %}" id="iconImg">
+                            <img class="img-rounded col-lg-3 col-md-3 col-sm-3 col-xs-3" style="width: 150px;" src="{% static 'img/star.png' %}">
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="starName" class="form-label">Name:</label>
                                 <input id="starName" type="text" name="starName" class="form-control">
@@ -78,13 +83,13 @@
                     <div class="text-center">
                         <h3>Spots</h3>
                     </div>
-                    <div class="text-right"><button type="button" onclick="create_spots()" class="btn btn-info">
+                    <div class="text-right" style="margin-right: 1%"><button type="button" onclick="create_spots()" class="btn btn-info">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button></div>
                     <div class="panel panel-body">
                         <div class="row">
 
-                            <div class="marginL20">
+                            <div style="margin-left: 20%">
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="spots"></div>
                             </div>
 
@@ -100,7 +105,7 @@
                     <div class="panel panel-body">
                         <div class="row">
 
-                            <img class="img-rounded col-lg-3 col-md-3 col-sm-3 col-xs-3" src="{% static 'img/planet.png' %}" id="iconImg">
+                            <img class="img-rounded col-lg-3 col-md-3 col-sm-3 col-xs-3" style="width: 150px;" src="{% static 'img/planet.png' %}">
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <label for="planetName" class="form-label">Name:</label>
                                 <input id="planetName" type="text" name="planetName" class="form-control">
@@ -158,12 +163,12 @@
                     <div class="text-center">
                         <h3>Moons</h3>
                     </div>
-                    <div class="text-right"><button type="button" onclick="create_moons()" class="btn btn-info">
+                    <div class="text-right" style="margin-right: 1%"><button type="button" onclick="create_moons()" class="btn btn-info">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button></div>
                     <div class="panel panel-body">
                         <div class="row">
-                            <img class="img-rounded col-lg-3 col-md-3 col-sm-3 col-xs-3" src="{% static 'img/moon.png' %}" id="iconImg">
+                            <img class="img-rounded col-lg-3 col-md-3 col-sm-3 col-xs-3" style="width: 150px;" src="{% static 'img/moon.png' %}">
 
                             <!-- Start Moons!-->
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="moons"></div>
@@ -178,7 +183,7 @@
                         Noise
                     </div>
                     <h3>Noise</h3>
-                    <div class="panel panel-body textL">
+                    <div class="panel panel-body" style="text-align: left;">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <input id="gaussian" type="radio" name="noise" value="gaussian">
                             <label for="gaussian">Gaussian</label>
@@ -224,13 +229,13 @@
 
         </section>
 
-        <section id="wait">
+        <section style="display: none; text-align: center;" id="wait">
 
             <h1>Wait ... We are generating your simulation</h1>
             <img src="{% static 'img/wait.gif' %}">
 
             <div class="progress">
-                <div class="progress-bar" role="progressbar" area-valuemin="0" area-valuemax="157">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" area-valuemin="0" area-valuemax="157">
 
                 </div>
             </div>

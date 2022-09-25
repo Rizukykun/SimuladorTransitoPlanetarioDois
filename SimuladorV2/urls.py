@@ -17,6 +17,5 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('webapp/', include('webapp.urls')), #caso queira deixar a página inicial sem rota, basta apagar o webapp/ e deixar apenas uma string vazia ('')
+    path('', include('webapp.urls')), #'' = localhost:8000||'/webapp' = localhost:8000/webapp
 ]
