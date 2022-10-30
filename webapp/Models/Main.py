@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import matplotlib
+from sqlalchemy import false
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
@@ -7,6 +8,7 @@ from webapp.SMOOTH import blur_image
 import numpy as np
 import os
 import glob
+from webapp.automold import add_fog
 
 class Main (object):
 
@@ -31,6 +33,8 @@ class Main (object):
 		Rs_pix = star.radius #stellar radius (in ~pixel?)
 		Rplan = planet.radius #planetary radius (in Rstar) (1 Rjup = 6.9911e4 km = 0.100447 Rsun)
 		ImgStar = star.returnimgStar()
+		if (float(noise) > 0):
+			ImgStar = add_fog(ImgStar, fog_coeff= float(noise))
 
 		Ny, Nx = ImgStar.shape
 
@@ -68,7 +72,8 @@ class Main (object):
 		
 		planet = planet.reshape([Ny, Nx])
 				
-		Lmin = np.sum(ImgStar*planet) / ImgStar.sum()
+		#Lmin = np.sum(ImgStar*planet) / ImgStar.sum()
+		Lmin = 0.999 #verificar o código comentado acima posteriormente
 
 		
 		color = '.9'
@@ -81,6 +86,10 @@ class Main (object):
 		files = glob.glob('webapp/static/video/*')
 		for f in files:
 			os.remove(f)
+
+		differenceRate = 0
+		rateCalculation = False
+		Lmax = 0
 
 		#print 'Loop start. '
 		for i in q:
@@ -100,9 +109,6 @@ class Main (object):
 					planet[ll]=0.
 			planet = planet.reshape([Ny, Nx])
 
-			# try 2
-			#img = add_fog(ImgStar*planet, fog_coeff= 1)
-
 			# Smooth image
 			img = blur_image(ImgStar*planet, 5)
 
@@ -111,6 +117,13 @@ class Main (object):
 			#else:    Lstep[i] = np.sum(img)
 			lc = Lstep / ImgStar.sum()
 			#lc = lc + (1 - np.nanmax(lc))
+
+			if (not rateCalculation):
+				differenceRate = 1 - lc[i]
+				rateCalculation = True			
+
+			#lc+= differenceRate
+			# #estudar difference rate com o fábio	
 
 			# Plotting ============================================================
 			fig = plt.figure(figsize=(8, 6), dpi=128)#, facecolor='k', edgecolor='k')
@@ -121,7 +134,11 @@ class Main (object):
 			ax = plt.subplot(gs[3:, :])
 			ax.plot(tstep[:i], lc[:i], '.-', lw=.8, ms=3, c='#ef9f4f')
 			ax.set_xlim(tstep[0], tstep[-1])#*1.1)
-			ax.set_ylim(Lmin*.999, 1.001)
+			if (Lmax < lc[i]):
+				Lmax = lc[i]
+			if (Lmin > lc[i]):
+				Lmin = lc[i]
+			ax.set_ylim(Lmin*.999, Lmax*.001)
 			ax.set_xlabel('time (h)', fontweight='bold')
 			ax.set_ylabel(r'flux (L$\star$)', fontweight='bold')
 			ax.grid(which='major', c=color, alpha=.6, lw=.6)
