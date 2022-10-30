@@ -16,9 +16,13 @@ def home(request):
 
 	return render(request, 'webapp/index.html')
 
-def simulator(request):
+def simulator(request):	
 
-	
+	try:
+		if (request.GET['video']) != "":
+			return simulator2(request)
+	except:
+		print("Rendering Simulation...")
 	
 	moons = []
 
@@ -67,4 +71,5 @@ def simulator(request):
 	main.makeVideo()
 	return render(request, 'webapp/simulator.html')
 
-##Tentar criar um método assincrono pra fazer o update da barra de progresso com base na quantidade de arquivos da pasta de imagens
+def simulator2(request):
+	return render(request, 'webapp/simulator.html')

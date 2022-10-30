@@ -5,5 +5,6 @@ AS OBSERVAÇÕES ABAIXO SÃO NECESSÁRIAS SOMENTE PARA O TIME DE DESENVOLVIMENTO
 ### pip install scipy
 ### pip install numpy
 ### pip install matplotlib
+### pip install opencv-python
 
 #### Instalar FFMPEG e criar variável de sistema para ele
