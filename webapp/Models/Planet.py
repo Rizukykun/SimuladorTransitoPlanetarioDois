@@ -35,7 +35,6 @@ class Planet (object):
 		tstep = self.tlstep(Rs_pix, ImgStar)
 		theta_p = 2*np.pi * tstep[0] / (self.orbit.period*24.) - np.pi/2.
 		xp = self.orbit.semiaxis * Rs_pix * np.cos(theta_p)
-		print(np.cos(theta_p[0]))
 		yp = self.orbit.semiaxis * Rs_pix * np.sin(theta_p) * np.cos(self.orbit.inclinationAngle)
 		pair = []
 		pair.append(xp)
