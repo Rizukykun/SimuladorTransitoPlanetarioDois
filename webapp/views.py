@@ -65,7 +65,6 @@ def simulator(request):
 		noise = request.GET['noise']
 	except:
 		noise = "null"
-	print("actual noise = " + noise)
 	main = Main()
 	main.plotImgs(planet, star, moons, request.GET['starColor'], noise)
 	main.makeVideo()

@@ -84,7 +84,7 @@ class Main (object):
 		differenceRate = 0
 		rateCalculation = False
 
-		#print 'Loop start. '
+		#Loop de Geração de Imagens e Gráficos
 		for i in q:
 			#Inicializa a geração da sombra na frente da estrela
 			planet = np.zeros(Ny * Nx) + 1
