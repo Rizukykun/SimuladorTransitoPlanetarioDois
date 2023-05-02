@@ -33,6 +33,7 @@ class Star (object):
 		global imgStar
 	
 		star = [[ 0.0 for i in range(self.matrixLen)] for j in range(self.matrixLen)]
+		cont = 0
 		
 		for j in range(len(star)):
 			for i in range(len(star[j])):
@@ -43,6 +44,7 @@ class Star (object):
 				if middleDistance <= self.radius:
 					cosTheta = math.sqrt(1-pow(middleDistance/self.radius,2))
 					star[i][j] = int(self.maximusIntensity * (1 - self.coeficienteHum *(1 - cosTheta) - self.coeficienteDois * (pow(1 - cosTheta, 2))))
+					cont = cont + 1
 		
 		imgStar = np.asarray(star)
 		return np.asarray(star)
