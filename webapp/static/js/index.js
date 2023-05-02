@@ -1,5 +1,9 @@
 function test1() {
 
+    if (!dialogOpener()){
+        window.location.replace("/simulator?video=1")
+        return;
+    }
     field_remover()
 
     document.getElementById("starName").value = "Star1"
@@ -19,9 +23,15 @@ function test1() {
     document.getElementById("planetInclinationAngle").value = "90"
     document.getElementById("planetObliquityAngle").value = "0"
     document.getElementById("planetEccentricity").value = "0"
+    document.getElementById("none").checked = true
 }
 
 function test2() {
+
+    if (!dialogOpener()){
+        window.location.replace("/simulator?video=2")
+        return;
+    }
 
     field_remover()
 
@@ -66,11 +76,17 @@ function test2() {
     document.getElementById("moonInclinationAngle_1").value = "90"
     document.getElementById("moonObliquityAngle_1").value = "0"
     document.getElementById("moonEccentricity_1").value = "0"
+    document.getElementById("none").checked = true
 
 
 }
 
 function test3() {
+
+    if (!dialogOpener()){
+        window.location.replace("/simulator?video=3")
+        return;
+    }
 
     field_remover()
 
@@ -142,7 +158,172 @@ function test3() {
     document.getElementById("moonInclinationAngle_2").value = "75"
     document.getElementById("moonObliquityAngle_2").value = "0"
     document.getElementById("moonEccentricity_2").value = "0"
+    document.getElementById("none").checked = true
 
+
+}
+
+function test1F() {
+
+    if (!dialogOpener()){
+        window.location.replace("/simulator?video=1F")
+        return;
+    }
+    field_remover()
+
+    document.getElementById("starName").value = "Star1"
+    document.getElementById("starRadius").value = "373."
+    document.getElementById("starMass").value = "10"
+    document.getElementById("effectiveTemperature").value = "10"
+
+
+    document.getElementById("planetName").value = "Planet1"
+    document.getElementById("planetRadius").value = "0.066200003"
+    document.getElementById("planetMass").value = "10000"
+    document.getElementById("atmosphere").value = "10"
+    document.getElementById("planetAlbedo").value = "10"
+
+    document.getElementById("planetSemiaxis").value = "19.549999"
+    document.getElementById("planetPeriod").value = "9.4341497"
+    document.getElementById("planetInclinationAngle").value = "90"
+    document.getElementById("planetObliquityAngle").value = "0"
+    document.getElementById("planetEccentricity").value = "0"
+    document.getElementById("little").checked = true
+}
+
+function test2F() {
+
+    if (!dialogOpener()){
+        window.location.replace("/simulator?video=2F")
+        return;
+    }
+
+    field_remover()
+
+    document.getElementById("starName").value = "Star2";
+    document.getElementById("starRadius").value = "373.";
+    document.getElementById("starMass").value = "10";
+    document.getElementById("effectiveTemperature").value = "10";
+
+    var val = "copper";
+    var sel = document.getElementById('starColor');
+    var opts = sel.options;
+
+    for (var opt, j = 0; opt = opts[j]; j++) {
+        if (opt.value == val) {
+            sel.selectedIndex = j;
+            break;
+        }
+    }
+
+
+    document.getElementById("planetName").value = "Planet2"
+    document.getElementById("planetRadius").value = "0.066200003"
+    document.getElementById("planetMass").value = "10000"
+    document.getElementById("atmosphere").value = "10"
+    document.getElementById("planetAlbedo").value = "10"
+
+    document.getElementById("planetSemiaxis").value = "19.549999"
+    document.getElementById("planetPeriod").value = "9.4341497"
+    document.getElementById("planetInclinationAngle").value = "90"
+    document.getElementById("planetObliquityAngle").value = "0"
+    document.getElementById("planetEccentricity").value = "0"
+
+    create_moons()
+
+    document.getElementById("moonName_1").value = "Moon1"
+    document.getElementById("moonRadius_1").value = "0.0288431223213"
+    document.getElementById("moonMass_1").value = "10000"
+    document.getElementById("moonAlbedo_1").value = "0"
+    document.getElementById("moonDistance_1").value = "4.10784266075"
+    document.getElementById("moonSemiaxis_1").value = "0"
+    document.getElementById("moonPeriod_1").value = "0.0751017821823"
+    document.getElementById("moonInclinationAngle_1").value = "90"
+    document.getElementById("moonObliquityAngle_1").value = "0"
+    document.getElementById("moonEccentricity_1").value = "0"
+    document.getElementById("noisy").checked = true;
+
+
+}
+
+function test3F() {
+
+    if (!dialogOpener()){
+        window.location.replace("/simulator?video=3F")
+        return;
+    }
+
+    field_remover()
+
+    document.getElementById("starName").value = "Star2";
+    document.getElementById("starRadius").value = "373.";
+    document.getElementById("starMass").value = "10";
+    document.getElementById("effectiveTemperature").value = "10";
+
+    var val = "bone";
+    var sel = document.getElementById('starColor');
+    var opts = sel.options;
+
+    for (var opt, j = 0; opt = opts[j]; j++) {
+        if (opt.value == val) {
+            sel.selectedIndex = j;
+            break;
+        }
+    }
+
+
+    document.getElementById("planetName").value = "Planet2"
+    document.getElementById("planetRadius").value = "0.066200003"
+    document.getElementById("planetMass").value = "10000"
+    document.getElementById("atmosphere").value = "10"
+    document.getElementById("planetAlbedo").value = "10"
+
+    create_spots()
+
+    document.getElementById("spotRadius_1").value = "0.05"
+    document.getElementById("spotIntensity_1").value = "0.5"
+    document.getElementById("spotLatitude_1").value = "-30"
+    document.getElementById("spotLongitude_1").value = "-55"
+
+    create_spots()
+
+    document.getElementById("spotRadius_2").value = "0.05"
+    document.getElementById("spotIntensity_2").value = "0.9"
+    document.getElementById("spotLatitude_2").value = "-45"
+    document.getElementById("spotLongitude_2").value = "45"
+
+    document.getElementById("planetSemiaxis").value = "19.549999"
+    document.getElementById("planetPeriod").value = "9.4341497"
+    document.getElementById("planetInclinationAngle").value = "90"
+    document.getElementById("planetObliquityAngle").value = "0"
+    document.getElementById("planetEccentricity").value = "0"
+
+    create_moons()
+
+    document.getElementById("moonName_1").value = "Moon1"
+    document.getElementById("moonRadius_1").value = "0.0288431223213"
+    document.getElementById("moonMass_1").value = "10000"
+    document.getElementById("moonAlbedo_1").value = "0"
+    document.getElementById("moonDistance_1").value = "4.10784266075"
+    document.getElementById("moonSemiaxis_1").value = "0"
+    document.getElementById("moonPeriod_1").value = "0.0751017821823"
+    document.getElementById("moonInclinationAngle_1").value = "90"
+    document.getElementById("moonObliquityAngle_1").value = "0"
+    document.getElementById("moonEccentricity_1").value = "0"
+
+    create_moons()
+
+    document.getElementById("moonName_2").value = "Moon2"
+    document.getElementById("moonRadius_2").value = "0.0298431223213"
+    document.getElementById("moonMass_2").value = "10000"
+    document.getElementById("moonAlbedo_2").value = "0"
+    document.getElementById("moonDistance_2").value = "4.10784266075"
+    document.getElementById("moonSemiaxis_2").value = "0"
+    document.getElementById("moonPeriod_2").value = "0.751017821823"
+    document.getElementById("moonInclinationAngle_2").value = "75"
+    document.getElementById("moonObliquityAngle_2").value = "0"
+    document.getElementById("moonEccentricity_2").value = "0"
+    document.getElementById("great").checked = true;
 
 }
 
@@ -206,4 +387,11 @@ function field_remover() {
         remove_spots_fields(room2)
     }
 
+}
+
+function dialogOpener(){
+    if (confirm("Do you want do load the simulation video?")){
+        return false;
+    }
+    return true;
 }
