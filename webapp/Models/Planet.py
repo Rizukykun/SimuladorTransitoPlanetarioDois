@@ -23,7 +23,7 @@ class Planet (object):
 		nstep = int(tdur*60.*4/self.orbit.returndt())# + 0.5) # number of steps
 		if nstep%2!=0: nstep = nstep+1
 		tstep = np.arange(-nstep/2., nstep/2., 1) * self.orbit.returndt()/60. # in hours
-		Lstep = np.zeros(nstep) + ImgStar.sum()# / ImgStar.sum()		
+		Lstep = np.zeros(nstep)	
 		tlstep = []
 		tlstep.append(tstep)
 		tlstep.append(Lstep)

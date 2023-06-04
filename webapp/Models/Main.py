@@ -3,7 +3,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from webapp.SMOOTH import blur_image
 import numpy as np
 import os
 import glob
@@ -14,11 +13,7 @@ class Main (object):
 	def __init__(self):
 		print ('Initialize')
 
-	def makeVideo(self):
-		try:
-			os.remove("webapp/static/video/test.webm")
-		except OSError:
-			pass
+	def makeVideo(self, videoname):
 		imgList = []
 		for filename in glob.glob('webapp/output/frames/*.png'):
 			img = cv2.imread(filename)
@@ -26,10 +21,11 @@ class Main (object):
 			size = (width,height)
 			imgList.append(img)
 
-		out = cv2.VideoWriter('webapp/static/video/test.webm', cv2.VideoWriter_fourcc('V','P','8','0'), 15, size)
+		out = cv2.VideoWriter('webapp/static/video/' + videoname, cv2.VideoWriter_fourcc('V','P','8','0'), 15, size)
 		for i in range(len(imgList)):
 			out.write(imgList[i])
 		out.release()
+		return True
 		
 	def plotImgs(self, planet, star, moons, maps, noise):
 	
@@ -39,7 +35,6 @@ class Main (object):
 		plt.rcParams['legend.borderaxespad'] = .3
 		plt.rcParams['legend.handlelength'] = 1.
 		color = '.9'
-		g = 1
 		
 		Rs_pix = star.radius #Raio estimado da estrela em pixels
 		Rplan = planet.radius #Raio do planeta em RSol (1 Rjup = 6.9911e4 km = 0.100447 Rsun)
@@ -73,7 +68,7 @@ class Main (object):
 		Lmin = 1 #Limite mínimo do Gráfico
 		Lmax = 0 #Limite máximo do Gráfico
 
-		## @@@ Guilherme Barros - Primeiro incremento de teste - Deleção de imagens da pasta
+		#Limpeza das imagens e do vídeo nas pastas para a geração de novos
 		files = glob.glob('webapp/output/frames/*')
 		for f in files:
 			os.remove(f)
@@ -81,8 +76,12 @@ class Main (object):
 		for f in files:
 			os.remove(f)
 
-		differenceRate = 0
-		rateCalculation = False
+		f = open("teste3.txt", "r")
+		vetor = f.read().split(",")
+		for i in range(len(vetor)):
+			vetor[i] = float(vetor[i])
+		ndvetor = np.asarray(vetor)
+		ndvetor = ndvetor.reshape([Ny, Nx])
 
 		#Loop de Geração de Imagens e Gráficos
 		for i in q:
@@ -104,35 +103,25 @@ class Main (object):
 			
 			planet = planet.reshape([Ny, Nx])
 
-			# Smooth image (talvez não precise disso)
-			img = blur_image(ImgStar*planet, 5)
-
-			#Realiza a soma de todos os pontos da imagem atual
-			#Lstep[i] = np.sum(img)
+			img = ImgStar*planet
+			#img = np.maximum(img, ndvetor)
 
 			lc[i] = np.sum(img) / ImgStarSoma
-
-			#Verificar depois
-			# if (not rateCalculation):
-			# 	differenceRate = 1 - lc[i]
-			# 	rateCalculation = True			
-
-			#lc+= differenceRate
-			# #estudar difference rate com o fábio	
 
 			# Plotting ============================================================
 			fig = plt.figure(figsize=(8, 6), dpi=128)#, facecolor='k', edgecolor='k')
 			gs = gridspec.GridSpec(4, 1)#, width_ratios=[1, 1])
-			#ax = fig.add_subplot(111)
 			ax = plt.subplot(gs[:3, :])
 			ax.imshow(img, cmap=maps, interpolation='gaussian', origin='lower')
 			ax = plt.subplot(gs[3:, :])
 			ax.plot(tstep[q[0]:i], lc[q[0]:i], '.-', lw=.8, ms=3, c='#ef9f4f')
-			ax.set_xlim(tstep[0], tstep[-1])#*1.1)
-			if (Lmax < lc[i]):
-				Lmax = lc[i]
-			if (Lmin > lc[i]):
-				Lmin = lc[i]
+			ax.set_xlim(tstep[0], tstep[-1])
+
+			Lmax = np.max(lc[q[0]:i + 1])
+
+			Lmin = np.min(lc[q[0]:i + 1])
+			if (Lmax == Lmin):
+				Lmin = 1
 			ax.set_ylim(Lmin*.999, Lmax + 0.001)
 			ax.set_xlabel('time (h)', fontweight='bold')
 			ax.set_ylabel(r'flux (L$\star$)', fontweight='bold')
@@ -147,7 +136,6 @@ class Main (object):
 			fig.tight_layout()			
 			fig.savefig('webapp/output/frames/img_' + str(f"{i:03}") + '.png', dpi=128, facecolor='k')
 			plt.close('all')
-			g += 1
 			# =====================================================================
 		print ('Process Done!')
 		return "Ok!"

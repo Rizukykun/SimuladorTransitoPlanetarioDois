@@ -12,6 +12,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>
     <link rel="shortcut icon" type="image/png" href="{% static 'img/rocket.png' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
     <title>Home</title>
 </head>
 
@@ -29,7 +32,7 @@
                 <button type="button" onclick="test2()" class="btn btn-primary">Simulation 2</button>
                 <button type="button" onclick="test3()" class="btn btn-primary">Simulation 3</button>
             </div>
-        </br> <!--Remover isso aqui assim que possível-->
+            </br> <!--Remover isso aqui assim que possível-->
 
             <div class="row">
                 <button type="button" onclick="test1F()" class="btn btn-primary">Simulation 1 Fog</button>
@@ -47,7 +50,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel panel-heading">
-                        Star
+                        Estrela
                     </div>
                     <div class="panel panel-body">
                         <div class="row">
@@ -55,32 +58,32 @@
                             <img class="img-rounded col-lg-3 col-md-3 col-sm-3 col-xs-3"
                                 src="{% static 'img/star.png' %}" id="iconImg">
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <label for="starName" class="form-label">Name:</label>
+                                <label for="starName" class="form-label">Nome:</label>
                                 <input id="starName" type="text" name="starName" class="form-control">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <label for="starRadius" class="form-label">Radius:</label>
+                                <label for="starRadius" class="form-label">Raio:</label>
                                 <input id="starRadius" type="text" name="starRadius" class="form-control"
-                                    placeholder="Unidade de Medida">
+                                    placeholder="Raio Solar (R☉)">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <label for="starMass" class="form-label">Mass:</label>
+                                <label for="starMass" class="form-label">Massa:</label>
                                 <input id="starMass" type="text" name="starMass" class="form-control"
-                                    placeholder="Unidade de Medida">
+                                    placeholder="Massa Solar (M☉)">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <label for="effectiveTemperature" class="form-label">Effective Temperature:</label>
+                                <label for="effectiveTemperature" class="form-label">Temperatura Efetiva:</label>
                                 <input id="effectiveTemperature" type="text" name="effectiveTemperature"
-                                    class="form-control" placeholder="Unidade de Medida">
+                                    class="form-control" placeholder="Kelvin (K)">
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <label for="starColor" class="form-label">Color: </label>
+                                <label for="starColor" class="form-label">Cor: </label>
                                 <select id="starColor" name="starColor" class="form-control">
 
-                                    <option value="gist_heat">Red</option>
-                                    <option value="copper">Yellow</option>
-                                    <option value="bone">Blue</option>
-                                    <option value="Greys_r">White</option>
+                                    <option value="gist_heat">Vermelho</option>
+                                    <option value="copper">Amarelo</option>
+                                    <option value="bone">Azul</option>
+                                    <option value="Greys_r">Branco</option>
 
                                 </select>
                             </div>
@@ -202,7 +205,7 @@
                     </div>
                     <h3>Noise Amount</h3>
                     <div class="panel panel-body textL">
-                        
+
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <input id="none" type="radio" name="noise" value=0 checked>
                             <label for="none">None</label>
