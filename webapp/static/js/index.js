@@ -25,6 +25,9 @@ function test1() {
         document.getElementById("planetInclinationAngle").value = "90"
         document.getElementById("planetObliquityAngle").value = "0"
         document.getElementById("planetEccentricity").value = "0"
+
+        noisetype('nenhum')
+
         document.getElementById("nenhum").checked = true
     }
 }
@@ -80,6 +83,9 @@ function test2() {
         document.getElementById("moonInclinationAngle_1").value = "90"
         document.getElementById("moonObliquityAngle_1").value = "0"
         document.getElementById("moonEccentricity_1").value = "0"
+
+        noisetype('nenhum')
+
         document.getElementById("nenhum").checked = true
     }
 
@@ -165,6 +171,9 @@ function test3() {
         document.getElementById("moonInclinationAngle_2").value = "75"
         document.getElementById("moonObliquityAngle_2").value = "0"
         document.getElementById("moonEccentricity_2").value = "0"
+
+        noisetype('nenhum')
+
         document.getElementById("nenhum").checked = true
     }
 
@@ -406,7 +415,7 @@ function noisetype(type) {
     var divtest = document.createElement("div");
     divtest.setAttribute("class", "deletaruido");
     if (type === 'FOG') {
-        divtest.innerHTML = '<hr><h3 id="noiseTitle" class="text-center">Quantidade de Interferência</h3><hr><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input id="none" type="radio" name="noise" value=0 checked><label for="none">Nenhum</label></div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input id="little" type="radio" name="noise" value=0.3><label for="little">Baixo</label></div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input id="noisy" type="radio" name="noise" value=0.6><label for="noisy">Médio</label></div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input id="great" type="radio" name="noise" value=1><label for="great">Alto</label></div>';
+        divtest.innerHTML = '<hr><h3 id="noiseTitle" class="text-center">Quantidade de Interferência</h3><hr><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input id="little" type="radio" name="noise" value=0.3><label for="little">Baixo</label></div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input id="noisy" type="radio" name="noise" value=0.6><label for="noisy">Médio</label></div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><input id="great" type="radio" name="noise" value=1><label for="great">Alto</label></div>';
         obtTo.appendChild(divtest);
     }
     else if (type === 'CME') {

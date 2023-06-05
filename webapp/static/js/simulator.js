@@ -8,6 +8,7 @@ function loadVideo(){
         video.pause();
         video.load();
         video.play();
+        document.getElementById("opener").style.display = "none"
     }
     else if (urlParams.has('sim')){
         const videoname = urlParams.get('sim');
