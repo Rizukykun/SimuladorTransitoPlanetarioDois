@@ -3,6 +3,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+from matplotlib.ticker import FormatStrFormatter
 import numpy as np
 import os
 import glob
@@ -169,6 +170,7 @@ class Main (object):
 			ax.set_ylim(Lmin*.999, Lmax + 0.001)
 			ax.set_xlabel('time (h)', fontweight='bold')
 			ax.set_ylabel(r'flux (L$\star$)', fontweight='bold')
+			ax.yaxis.set_major_formatter(FormatStrFormatter('%.3f'))
 			ax.grid(which='major', c=color, alpha=.6, lw=.6)
 			ax.grid(which='minor', c=color, alpha=.3, lw=.3)
 			ax.set_facecolor('k')

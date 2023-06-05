@@ -122,10 +122,11 @@ def simulator2(request):
 	return render(request, 'webapp/simulator.html')
 
 def open(request):
-	pathvideo = r"C:\Users\guilh\OneDrive\Área de Trabalho\Important Docs\Faculdade\TCC\code\SimuladorTransitoPlanetarioDois\webapp\static\video"
+	cwd = os.getcwd()
+	pathvideo = cwd + r"\webapp\static\video"
 	pathvideo = os.path.realpath(pathvideo)
-	pathimagens = r"C:\Users\guilh\OneDrive\Área de Trabalho\Important Docs\Faculdade\TCC\code\SimuladorTransitoPlanetarioDois\webapp\output\frames"
+	pathimagens = cwd + r"\webapp\output\frames"
 	pathimagens = os.path.realpath(pathimagens)
 	os.startfile(pathvideo)
 	os.startfile(pathimagens)
-	return render(request, 'webapp/index.html')
+	return redirect("/")
