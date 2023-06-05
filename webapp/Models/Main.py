@@ -7,6 +7,8 @@ import numpy as np
 import os
 import glob
 import cv2
+import subprocess
+import random
 
 class Main (object):
 
@@ -27,7 +29,11 @@ class Main (object):
 		out.release()
 		return True
 		
-	def plotImgs(self, planet, star, moons, maps, noiseType, noise, CMEposX, CMEposY, CMEMajorRadius, CMEMinorRadius, CMEAngle):
+	def plotImgs(self, planet, star, moons, maps, noiseType, noise, CMEposX: int, CMEposY: int, CMEMajorRadius: int, CMEMinorRadius: int, CMEAngle: float):
+		CMErad = CMEAngle * np.pi / 180
+		cosa = np.cos(CMErad) #Cosseno do ângulo informado
+		sina = np.sin(CMErad) #Seno do ângulo informado
+		seed = random.randint(0,10000) #Seed para a geração da CME
 
 		#Parâmetros de plotagem
 		plt.rcParams['xtick.minor.visible'] = True
@@ -76,12 +82,19 @@ class Main (object):
 		for f in files:
 			os.remove(f)
 
-		f = open("teste3.txt", "r")
-		vetor = f.read().split(",")
-		for i in range(len(vetor)):
-			vetor[i] = float(vetor[i])
-		ndvetor = np.asarray(vetor)
-		ndvetor = ndvetor.reshape([Ny, Nx])
+		vetorCMEs = []
+		if noiseType == "CME":			
+			for i in range(10):
+				#Chamar o exe
+				subprocess.call([r"./GeradorCME.exe", str(i), str(seed)])
+				#Ler o arquivo
+				f = open(f"CMEFrame{i}.txt", "r")
+				vetor = f.read().split(",")
+				for j in range(len(vetor)):
+					vetor[j] = float(vetor[j])
+				ndvetor = np.asarray(vetor)
+				#Salvar para depois
+				vetorCMEs.append(ndvetor)
 
 		#Loop de Geração de Imagens e Gráficos
 		for i in q:
@@ -104,7 +117,38 @@ class Main (object):
 			planet = planet.reshape([Ny, Nx])
 
 			img = ImgStar*planet
-			#img = np.maximum(img, ndvetor)
+
+			if noiseType == "CME":
+				#Criar mascara da elipse
+				frame = int((i - q[0]) / (len(q) / 10))
+				cme = vetorCMEs[frame]
+
+				rMai = (CMEMajorRadius / len(q)) + (CMEMajorRadius / len(q)) * (i - q[0])
+				rMen = (CMEMinorRadius / len(q)) + (CMEMinorRadius / len(q)) * (i - q[0])
+
+				mascara = np.zeros(856*856)
+				
+				dd = rMai * rMai
+				DD = rMen * rMen
+
+				arrayX = np.arange(0,Nx)
+				arrayY = np.arange(0,Nx)
+				
+				mascara = np.empty((Nx,Nx))
+				for y in arrayY:
+					a = np.power(cosa*(arrayX-CMEposX)+sina*(y-CMEposY),2)
+					b = np.power(sina*(arrayX-CMEposX)-cosa*(y-CMEposY),2)
+					distancia = (a/dd)+(b/DD)
+					mascara[y] = (np.where(distancia <= 1, 1-(distancia*distancia*distancia*distancia),0))
+				
+				mascara = mascara.reshape(Nx*Nx)
+
+				#Multiplicar cme pela mascara
+				cme = cme*mascara
+				cme = cme.reshape(Nx, Nx)
+
+				#Aplicar CME
+				img = np.maximum(img, cme)
 
 			lc[i] = np.sum(img) / ImgStarSoma
 
