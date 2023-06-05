@@ -27,8 +27,8 @@ class Main (object):
 		out.release()
 		return True
 		
-	def plotImgs(self, planet, star, moons, maps, noise):
-	
+	def plotImgs(self, planet, star, moons, maps, noiseType, noise, CMEposX, CMEposY, CMEMajorRadius, CMEMinorRadius, CMEAngle):
+
 		#Parâmetros de plotagem
 		plt.rcParams['xtick.minor.visible'] = True
 		plt.rcParams['ytick.minor.visible'] = True

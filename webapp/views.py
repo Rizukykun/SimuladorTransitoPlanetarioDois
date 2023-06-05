@@ -12,6 +12,7 @@ from webapp.Models.Spot import Spot
 from webapp.Models.Star import Star
 
 from datetime import datetime
+import os
 
 # Create your views here.
 
@@ -75,11 +76,41 @@ def simulator(request):
 		star = Star(request.GET['starName'], float(request.GET['starRadius']), float(request.GET['starMass']), float(request.GET['effectiveTemperature']), spots)
 		planet = Planet(float(request.GET['planetMass']), float(request.GET['planetRadius']), float(request.GET['atmosphere']), float(request.GET['planetAlbedo']), Orbit(float(request.GET['planetSemiaxis']), float(request.GET['planetPeriod']), float(request.GET['planetInclinationAngle']), float(request.GET['planetObliquityAngle']), float(request.GET['planetEccentricity'])))	
 		try:
-			noise = request.GET['noise']
-		except:
-			noise = "null"
+			noiseType = request.GET['noiseType']
+		except Exception as e:
+			print(e)
+
+		if (noiseType == "FOG"):
+			try:
+				noise = request.GET['noise']
+				CMEposX = 0
+				CMEposY = 0
+				CMEMajorRadius = 0
+				CMEMinorRadius = 0
+				CMEAngle = 0
+			except Exception as e:
+				print(e)
+		elif (noiseType == "CME"):
+			try:
+				noise = 0
+				CMEposX = request.GET['CMEX']
+				CMEposY = request.GET['CMEY']
+				CMEMajorRadius = request.GET['CMEMajorRadius']
+				CMEMinorRadius = request.GET['CMEMinorRadius']
+				CMEAngle = request.GET['CMEAngle']
+			except Exception as e:
+				print(e)
+		else:
+			noise = 0
+			CMEposX = 0
+			CMEposY = 0
+			CMEMajorRadius = 0
+			CMEMinorRadius = 0
+			CMEAngle = 0
+
+
 		main = Main()
-		main.plotImgs(planet, star, moons, request.GET['starColor'], noise)
+		main.plotImgs(planet, star, moons, request.GET['starColor'], noiseType, noise, CMEposX, CMEposY, CMEMajorRadius, CMEMinorRadius, CMEAngle)
 
 		main.makeVideo(video_name)
 
@@ -90,3 +121,11 @@ def simulator(request):
 def simulator2(request):
 	return render(request, 'webapp/simulator.html')
 
+def open(request):
+	pathvideo = r"C:\Users\guilh\OneDrive\Área de Trabalho\Important Docs\Faculdade\TCC\code\SimuladorTransitoPlanetarioDois\webapp\static\video"
+	pathvideo = os.path.realpath(pathvideo)
+	pathimagens = r"C:\Users\guilh\OneDrive\Área de Trabalho\Important Docs\Faculdade\TCC\code\SimuladorTransitoPlanetarioDois\webapp\output\frames"
+	pathimagens = os.path.realpath(pathimagens)
+	os.startfile(pathvideo)
+	os.startfile(pathimagens)
+	return render(request, 'webapp/index.html')

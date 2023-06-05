@@ -17,3 +17,9 @@ function loadVideo(){
         video.play();
     }
 }
+
+function dialogOpener(){
+    if (confirm("Pressione OK se desejar abrir os arquivos localmente e retornar para o formulário.")) {
+        window.location = "/open";
+    }
+}

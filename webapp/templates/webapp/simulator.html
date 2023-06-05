@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/simulator.css">
     <script src="../../static/js/simulator.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -21,7 +22,7 @@
 <body onload="loadVideo()">
 
     <div class="jumbotron text-center">
-        <h1>Simulation Result</h1>
+        <h1>Resultado da Simulação</h1>
     </div>
 
     <div class="text-center">
@@ -30,7 +31,8 @@
 		  <p>Your browser does not support HTML5 video.</p>
 		</video>
         <br>
-        <button type="button" onclick="window.location='/';" class="btn btn-outline-success">Go Back</button>
+        <button type="button" onclick="window.location='/';" class="btn btn-outline-success btn-voltar">Retornar</button>
+        <button type="button" onclick="dialogOpener()" class="btn btn-outline-success btn-abrir">Abrir Localmente</button>
     </div>
 </body>
 
