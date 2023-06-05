@@ -84,18 +84,17 @@ class Main (object):
 			os.remove(f)
 
 		vetorCMEs = []
+		cosmicDust = 0
 		if noiseType == "CME":			
 			for i in range(10):
-				#Chamar o exe
-				subprocess.call([r"./GeradorCME.exe", str(i), str(seed)])
-				#Ler o arquivo
-				f = open(f"CMEFrame{i}.txt", "r")
-				vetor = f.read().split(",")
-				for j in range(len(vetor)):
-					vetor[j] = float(vetor[j])
-				ndvetor = np.asarray(vetor)
+				ndvetor = runCmeExe(i, seed, noiseType)
 				#Salvar para depois
 				vetorCMEs.append(ndvetor)
+		elif noiseType == "FOG":
+			cosmicDust = runCmeExe(0, seed, noiseType)
+			cosmicDust = cosmicDust.reshape(Nx, Nx)
+			ImgStarSoma = (ImgStar + (cosmicDust * noise)).sum()
+
 
 		#Loop de Geração de Imagens e Gráficos
 		for i in q:
@@ -150,6 +149,8 @@ class Main (object):
 
 				#Aplicar CME
 				img = np.maximum(img, cme)
+			elif noiseType == "FOG":				
+				img = img + (cosmicDust * noise)				
 
 			lc[i] = np.sum(img) / ImgStarSoma
 
@@ -185,3 +186,13 @@ class Main (object):
 			# =====================================================================
 		print ('Process Done!')
 		return "Ok!"
+	
+def runCmeExe(frame, seed, tipo):
+	#Chamar o exe
+	subprocess.call([r"./GeradorCME.exe", str(frame), str(seed), str(tipo)])
+	#Ler o arquivo
+	f = open(f"CMEFrame{frame}.txt", "r")
+	vetor = f.read().split(",")
+	for j in range(len(vetor)):
+		vetor[j] = float(vetor[j])
+	return np.asarray(vetor)

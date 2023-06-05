@@ -110,7 +110,7 @@ def simulator(request):
 
 
 		main = Main()
-		main.plotImgs(planet, star, moons, request.GET['starColor'], noiseType, noise, int(CMEposX), int(CMEposY), int(CMEMajorRadius), int(CMEMinorRadius), float(CMEAngle))
+		main.plotImgs(planet, star, moons, request.GET['starColor'], noiseType, float(noise), int(CMEposX), int(CMEposY), int(CMEMajorRadius), int(CMEMinorRadius), float(CMEAngle))
 
 		main.makeVideo(video_name)
 
